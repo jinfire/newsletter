@@ -1,9 +1,12 @@
 import smtplib
+import schedule
+import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from config import Config
 from crawling import NewsCrawler
 from htmlGenerator import HTMLGenerator
+
 
 def send_email(subject, html_content, recipients):
     """Send email using SMTP."""
@@ -36,7 +39,7 @@ def send_email(subject, html_content, recipients):
     except Exception as e:
         print(f"Failed to send email: {e}")
 
-if __name__ == "__main__":
+def mailing():
     # Recipients
     recipients = ["jensoo7023@naver.com", "qejlfn@naver.com"]
 
@@ -50,3 +53,13 @@ if __name__ == "__main__":
 
     # Step 3: Send email
     send_email("Today's News Update", final_html, recipients)
+
+
+# 스케줄 등록
+schedule.every(10).seconds.do(mailing)
+
+# schedule.every().day.at("09:00").do(send_mail_func)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
