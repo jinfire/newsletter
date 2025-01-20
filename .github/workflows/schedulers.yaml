@@ -2,8 +2,8 @@ name: Newsletter Scheduler
 
 on:
   schedule:
-    # 매일 오후 11시(한국 시간 기준) 실행 (UTC로는 14:00)
-    - cron: '10 15 * * *'
+    # 매일 오후 6시(한국 시간 기준) 실행 (UTC로는 14:00)
+    - cron: '20 9 * * *'
 
 jobs:
   send-newsletter:
