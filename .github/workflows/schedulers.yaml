@@ -4,6 +4,7 @@ on:
   schedule:
     # 매일 오후 6시(한국 시간 기준) 실행 (UTC로는 14:00)
     - cron: '20 9 * * *'
+  workflow_dispatch:
 
 jobs:
   send-newsletter:
