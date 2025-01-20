@@ -24,9 +24,9 @@ jobs:
       # 필요한 의존성 설치
       - name: Install dependencies
         run: |
-          pip install -r /coding/newsletter/requirements.txt
+          pip install -r coding/newsletter/requirements.txt
 
       # 뉴스레터 발송 스크립트 실행
       - name: Run script
         run: |
-          python /coding/newsletter/Main.py
+          python coding/newsletter/Main.py
