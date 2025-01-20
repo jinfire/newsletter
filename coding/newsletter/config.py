@@ -1,5 +1,3 @@
-from dataclasses import dataclass
-
 class Config:
     SMTP_SERVERS = {
         "naver":{

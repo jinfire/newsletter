@@ -1,6 +1,4 @@
 import smtplib
-import schedule
-import time
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from config import Config
@@ -39,7 +37,7 @@ def send_email(subject, html_content, recipients):
     except Exception as e:
         print(f"Failed to send email: {e}")
 
-def mailing():
+if __name__ == "__main__":
     # Recipients
     recipients = ["jensoo7023@naver.com", "qejlfn@naver.com"]
 
@@ -52,14 +50,6 @@ def mailing():
     final_html = html_generator.generate_html(news_data)
 
     # Step 3: Send email
-    send_email("Today's News Update", final_html, recipients)
+    send_email("오늘의 주요 경제뉴스", final_html, recipients)
 
 
-# 스케줄 등록
-schedule.every(10).seconds.do(mailing)
-
-# schedule.every().day.at("09:00").do(send_mail_func)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
