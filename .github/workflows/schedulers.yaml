@@ -29,4 +29,4 @@ jobs:
       # 뉴스레터 발송 스크립트 실행
       - name: Run script
         run: |
-          python Main.py
+          python /coding/newsletter/Main.py
