@@ -3,7 +3,7 @@ name: Newsletter Scheduler
 on:
   schedule:
     # 매일 오후 11시(한국 시간 기준) 실행 (UTC로는 14:00)
-    - cron: '* 14 * * *'
+    - cron: '0 14 * * *'
   workflow_dispatch:
 
 jobs:
