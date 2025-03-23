@@ -9,7 +9,6 @@ from blogHtmlGenerator import BlogHtmlGenerator
 
 def send_email(subject, html_content, recipients):
     """Send email using SMTP."""
-    
     provider = "naver"
     smtp_config = Config.get_smtp_config(provider)
 
@@ -56,7 +55,7 @@ if __name__ == "__main__":
     blog_html = blog_html_generator.generate_html(blog_data)
 
     # Step 3: Send email
-    #send_email("오늘의 주요 경제뉴스", final_html, news_recipients)
+    send_email("오늘의 주요 경제뉴스", final_html, news_recipients)
     send_email("이번주 청약 소식", blog_html, blog_recipients)
 
 
