@@ -41,7 +41,10 @@ class BlogHtmlGenerator:
 
     def generate_html(self, articles):
         """블로그 뉴스레터 HTML 생성"""
-        articles_html = "".join(
-            self.article_template.format(title=item[0], url=item[1],date=item[2]) for item in articles
-        )
+        if not articles:
+            articles_html = "<p>최근 줍줍일정이 없습니다.</p>"
+        else:
+            articles_html = "".join(
+                self.article_template.format(title=item[0], url=item[1],date=item[2]) for item in articles
+            )
         return self.html_template.format(articles=articles_html)
