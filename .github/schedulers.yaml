@@ -1,0 +1,32 @@
+name: Newsletter Scheduler
+
+on:
+  schedule:
+    # 매일 오후 11시(한국 시간 기준) 실행 (UTC로는 14:00)
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+jobs:
+  send-newsletter:
+    runs-on: ubuntu-latest
+
+    steps:
+      # GitHub Repository의 코드를 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Python 환경 설정
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      # 필요한 의존성 설치
+      - name: Install dependencies
+        run: |
+          pip install -r coding/newsletter/requirements.txt
+
+      # 뉴스레터 발송 스크립트 실행
+      - name: Run script
+        run: |
+          python coding/newsletter/Main.py
