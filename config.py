@@ -4,7 +4,7 @@ class Config:
             "email":"oinqkvs@naver.com",
             "password":"qpdknvi319",
             "smtpName":"smtp.naver.com",
-            "smtpPort":465,
+            "smtpPort":587,
         }
     }
 
