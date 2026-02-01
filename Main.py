@@ -62,8 +62,8 @@ if __name__ == "__main__":
     stock_html = stock_html_generator.generate_html(stock_data)
 
     # Step 3: Send email
-    send_email("오늘의 주요 경제뉴스", final_html, news_recipients)
-    send_email("이번주 청약 소식", blog_html, blog_recipients)
-    send_email("오늘의 투자 정보", stock_html, stock_recipients)
+    #send_email("오늘의 주요 경제뉴스", final_html, news_recipients)
+    #send_email("이번주 청약 소식", blog_html, blog_recipients)
+    send_email("오늘의 시황", stock_html, stock_recipients)
 
 
