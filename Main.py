@@ -36,6 +36,13 @@ def send_email(subject, html_content, recipients):
 
                 server.sendmail(SMTP_USER, recipient, msg.as_string())
                 print(f"Email sent to {recipient}")
+    except smtplib.SMTPAuthenticationError as e:
+        print(f"[ERROR] 인증 실패: {e}")
+        print(f"[HINT] 네이버 메일 설정을 확인하세요:")
+        print(f"       1. https://mail.naver.com 로그인")
+        print(f"       2. 환경설정 > POP3/IMAP 설정")
+        print(f"       3. IMAP/SMTP 사용 체크")
+        print(f"       4. 2단계 인증 사용 시 '앱 비밀번호' 생성 필요")
     except Exception as e:
         print(f"Failed to send email: {e}")
 
