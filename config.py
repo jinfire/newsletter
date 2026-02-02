@@ -2,7 +2,7 @@ class Config:
     SMTP_SERVERS = {
         "naver":{
             "email":"oinqkvs@naver.com",
-            "password":"qpdknvi319",
+            "password":"P4CXHMQWKQ85",
             "smtpName":"smtp.naver.com",
             "smtpPort":587,
         }
