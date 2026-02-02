@@ -50,7 +50,7 @@ if __name__ == "__main__":
     # Recipients
     news_recipients = ["jensoo7023@naver.com", "qejlfn@naver.com"]
     blog_recipients = ["qejlfn@naver.com","jensoo7023@gmail.com"]
-    stock_recipients = ["jensoo7023@naver.com", "qejlfn@naver.com"]
+    stock_recipients = ["jensoo7023@gmail.com", "qejlfn@naver.com"]
 
     # Step 1: Fetch news
     news_crawler = NewsCrawler()
