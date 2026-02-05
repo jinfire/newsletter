@@ -9,8 +9,10 @@ class StockHtmlGenerator:
         
         # 데이터를 카테고리별로 분류
         etf_data = [d for d in stock_data if d['name'] in ['QQQ', 'SPY']]
+        stock_individual_data = [d for d in stock_data if d['name'] in ['Apple', 'NVIDIA', 'Google', 'Microsoft']]
         forex_data = [d for d in stock_data if 'KRW' in d['name']]
         commodity_data = [d for d in stock_data if d['name'] in ['Gold', 'Oil', 'Silver', 'Copper']]
+        treasury_data = [d for d in stock_data if 'Treasury' in d['name']]
         
         html = f"""
         <!DOCTYPE html>
@@ -153,6 +155,16 @@ class StockHtmlGenerator:
                 html += self._generate_stock_card(stock)
             html += "</div>"
         
+         # 개별 주식 섹션
+        if stock_individual_data:
+            html += """
+                <div class="section">
+                    <div class="section-title">💼 미국 주식</div>
+            """
+            for stock in stock_individual_data:
+                html += self._generate_stock_card(stock)
+            html += "</div>"
+        
         # 환율 섹션
         if forex_data:
             html += """
@@ -170,6 +182,16 @@ class StockHtmlGenerator:
                     <div class="section-title">🏭 원자재</div>
             """
             for stock in commodity_data:
+                html += self._generate_stock_card(stock)
+            html += "</div>"
+        
+        # 국채 금리 섹션
+        if treasury_data:
+            html += """
+                <div class="section">
+                    <div class="section-title">📈 미국 국채 금리</div>
+            """
+            for stock in treasury_data:
                 html += self._generate_stock_card(stock)
             html += "</div>"
         
