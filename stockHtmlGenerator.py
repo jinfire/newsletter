@@ -210,18 +210,14 @@ class StockHtmlGenerator:
     def _generate_stock_card(self, stock):
         """개별 주식 카드 HTML 생성"""
         is_up = stock.get('is_up', None)
-        if is_up is True:
-            arrow = '▲'
-            card_class = 'up'
-            change_class = 'up'
-        elif is_up is False:
-            arrow = '▼'
-            card_class = 'down'
-            change_class = 'down'
-        else:
-            arrow = '-'
-            card_class = ''
-            change_class = ''
+        
+        # 매핑 딕셔너리
+        class_map = {True: 'up', False: 'down'}
+        arrow_map = {True: '▲', False: '▼'}
+        
+        card_class = class_map.get(is_up, '')
+        change_class = class_map.get(is_up, '')
+        arrow = arrow_map.get(is_up, '-')
         
         return f"""
                     <div class="stock-card {card_class}">
