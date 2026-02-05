@@ -6,12 +6,18 @@ class StockCrawler:
         self.symbols = {
             'QQQ': 'QQQ',
             'SPY': 'SPY',
+            'Apple': 'AAPL',
+            'NVIDIA': 'NVDA',
+            'Google': 'GOOGL',
+            'Microsoft': 'MSFT',
             'USD/KRW': 'KRW=X',
             'EUR/KRW': 'EURKRW=X',
             'Gold': 'GC=F',  # Gold Futures
             'Oil': 'CL=F',   # Crude Oil Futures
             'Silver': 'SI=F', # Silver Futures
-            'Copper': 'HG=F'  # Copper Futures
+            'Copper': 'HG=F',  # Copper Futures
+            'US 10Y Treasury': '^TNX',   # 10년물 국채 금리
+            'US 30Y Treasury': '^TYX'    # 30년물 국채 금리
         }
     
     def fetch_stock_data(self):
@@ -54,7 +60,8 @@ class StockCrawler:
             # 변화량 및 변화율 계산
             change = current_price - prev_price
             change_percent = (change / prev_price) * 100 
-            #if change < 0: change_percent = change_percent * -1 
+
+            is_up = change > 0
             
             # 가격 포맷팅
             if 'KRW' in symbol:
@@ -62,6 +69,11 @@ class StockCrawler:
                 formatted_current = f"{current_price:,.2f}"
                 formatted_prev = f"{prev_price:,.2f}"
                 formatted_change = f"{abs(change):,.2f}"
+            elif 'Treasury' in name:
+                # 국채 금리는 % 표시 (Yahoo에서 이미 %로 제공)
+                formatted_current = f"{current_price:.3f}%"
+                formatted_prev = f"{prev_price:.3f}%"
+                formatted_change = f"{abs(change):.3f}%"    
             elif name in ['Gold', 'Oil', 'Silver', 'Copper']:
                 # 원자재는 소수점 2자리
                 formatted_current = f"${current_price:,.2f}"
@@ -80,6 +92,7 @@ class StockCrawler:
                 'prev_price': formatted_prev,
                 'change': formatted_change,
                 'change_percent': f"{(change_percent):.2f}%",
+                'is_up': is_up,
                 'last_update': hist.index[-1].strftime('%Y-%m-%d')
             }
             
