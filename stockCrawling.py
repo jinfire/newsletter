@@ -1,6 +1,7 @@
 import json
 import yfinance as yf
 
+
 class StockCrawler:
     def __init__(self):
         self.symbols = {
